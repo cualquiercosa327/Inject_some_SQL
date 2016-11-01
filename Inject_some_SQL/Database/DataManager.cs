@@ -15,6 +15,8 @@ namespace Inject_some_SQL.Database
 
         public void ConnectToDB()
         {
+            // TODO: Datenbank-Informationen aus Config-Datei einlesen.
+
             myConnectionString = "server=127.0.0.1;uid=root;pwd=Deinemudda1221;database=world;";
 
             conn = new MySqlConnection();

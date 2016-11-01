@@ -12,8 +12,6 @@ using Inject_some_SQL.Database;
 /* Test-Anwendung für SQL-Injection
  * Bewusst werden mehrere Sicherheitslücken eingebaut um SQL-Injection demonstrieren zu können
  * 
- * 
- * 
  * by Tim Lukas Förster 
  * 31.10.2016 - 
  */
