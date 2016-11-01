@@ -1,27 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace Inject_some_SQL.Database
 {
-    class DataManager
+    public class DataManager
     {
-        string myConnectionString = null;
-        MySqlConnection conn = null;
+        private Configuration configuration = null;
 
+        private String dbConnectionString;
+        private MySqlConnection dbConnection;
+        private String dbServer;
+        private String dbUser;
+        private String dbPassword;
+        private String dbDataBase;
+        private bool connected = false;
 
-        public void ConnectToDB()
+        /// <summary>
+        /// Gibt an, ob die Verbindung zur Datenbank besteht
+        /// </summary>
+        public bool Connected
         {
-            // TODO: Datenbank-Informationen aus Config-Datei einlesen.
+            get { return connected; }
+            set { connected = value; }
+        }
 
-            myConnectionString = "server=127.0.0.1;uid=root;pwd=Deinemudda1221;database=world;";
 
-            conn = new MySqlConnection();
-            conn.ConnectionString = myConnectionString;
-            conn.Open();
+        // ~~~~~~~ KONSTRUKTOR ~~~~~~~
+        public DataManager(Configuration conf)
+        {
+            this.configuration = conf;
+
+            // Datenbank-Verbindungsdaten laden
+            dbServer = conf.Database.Server;
+            dbUser = conf.Database.Login;
+            dbPassword = conf.Database.Password;
+            dbDataBase = conf.Database.DataBase;
+        }
+
+        // -----------------------------------------------
+        // Datenbankverbindung herstellen
+        public void Connect()
+        {
+            connected = false;
+            Connect(dbServer, dbUser, dbPassword, dbDataBase);
+            this.connected = true;
+        }
+
+        // -----------------------------------------------
+        // Datenbankverbindung herstellen
+        private void Connect(String sServer, String sUid, String sPws, String sDataBase)
+        {
+            // Connectionstring zusammenbauen
+            dbConnectionString = "Server=" + sServer + ";";
+            dbConnectionString += "uid=" + sUid + ";";
+            dbConnectionString += "pwd=" + sPws + ";";
+            dbConnectionString += "database=" + sDataBase + ";";
+
+            // Verbindung herstellen
+            dbConnection = new MySqlConnection(dbConnectionString);
+            dbConnection.Open();
         }
     }
 }

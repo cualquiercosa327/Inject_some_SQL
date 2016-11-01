@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
@@ -9,37 +6,21 @@ namespace Inject_some_SQL
 {
     public class Configuration
     {
-        private string title = "DEFAULT";
-        /// <summary>
-        /// Bezeichnung der Konfiguration
-        /// </summary>
-        public string Title
-        {
-            get { return title; }
-            set { title = value; }
-        }
-
         #region Unterklassen
         /// <summary>
-        /// Datenbank-Konfiguration
+        /// Datenbank-Konfiguration (MY-SQL)
         /// </summary>
         public class DatabaseConf
         {
-            private string provider = "MSDAORA.1";
+            private string server = "127.0.0.1";
 
-            public string Provider
+            public string Server
             {
-                get { return provider; }
-                set { provider = value; }
+                get { return server; }
+                set { server = value; }
             }
-            private string dataSource = "SODB";
 
-            public string DataSource
-            {
-                get { return dataSource; }
-                set { dataSource = value; }
-            }
-            private string login = "USERNAME";
+            private string login = "username";
 
             public string Login
             {
@@ -52,6 +33,14 @@ namespace Inject_some_SQL
             {
                 get { return password; }
                 set { password = value; }
+            }
+
+            private string dataBase = "local";
+
+            public string DataBase
+            {
+                get { return dataBase; }
+                set { dataBase = value; }
             }
         }
         #endregion
