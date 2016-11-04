@@ -107,5 +107,10 @@ namespace Inject_some_SQL
         }
 
         #endregion
+
+        private void btSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
