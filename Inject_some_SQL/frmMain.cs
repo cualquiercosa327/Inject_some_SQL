@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Inject_some_SQL.Database;
 using System.IO;
+using System.Data;
 
 /* Test-Anwendung für SQL-Injection
  * Bewusst werden mehrere Sicherheitslücken eingebaut um SQL-Injection demonstrieren zu können
@@ -25,7 +26,15 @@ namespace Inject_some_SQL
             InitializeComponent();
             InitConfiguration();
             InitDataManager();
+
+            test();
         }
+
+        private void test()
+        {
+            LoadItemsToTable();
+        }
+
 
         #region Datenbank - Konfiguration laden und Verbindung herstellen
         /// <summary>
@@ -107,6 +116,20 @@ namespace Inject_some_SQL
         }
 
         #endregion
+
+
+        private void LoadItemsToTable()
+        {
+
+            DataTable table = new DataTable();
+
+            datamgr.LoadItemsFromDB(null, table);
+
+            dataGridViewItems.DataSource = table;
+
+        }
+
+
 
         private void btSearch_Click(object sender, EventArgs e)
         {

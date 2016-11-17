@@ -31,10 +31,6 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btSearch = new System.Windows.Forms.Button();
             this.dataGridViewItems = new System.Windows.Forms.DataGridView();
-            this.art_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.art_nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.art_bez2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.art_bez1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,41 +59,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.art_id,
-            this.art_nr,
-            this.art_bez2,
-            this.art_bez1});
             this.dataGridViewItems.Location = new System.Drawing.Point(13, 40);
             this.dataGridViewItems.Name = "dataGridViewItems";
             this.dataGridViewItems.ReadOnly = true;
             this.dataGridViewItems.Size = new System.Drawing.Size(726, 402);
             this.dataGridViewItems.TabIndex = 2;
-            // 
-            // art_id
-            // 
-            this.art_id.HeaderText = "Artikel ID";
-            this.art_id.Name = "art_id";
-            this.art_id.ReadOnly = true;
-            this.art_id.Visible = false;
-            // 
-            // art_nr
-            // 
-            this.art_nr.HeaderText = "Artikel Nummer";
-            this.art_nr.Name = "art_nr";
-            this.art_nr.ReadOnly = true;
-            // 
-            // art_bez2
-            // 
-            this.art_bez2.HeaderText = "Bezeichnung 2";
-            this.art_bez2.Name = "art_bez2";
-            this.art_bez2.ReadOnly = true;
-            // 
-            // art_bez1
-            // 
-            this.art_bez1.HeaderText = "Bezeichnung 1";
-            this.art_bez1.Name = "art_bez1";
-            this.art_bez1.ReadOnly = true;
             // 
             // frmMain
             // 
@@ -120,10 +86,6 @@
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.DataGridView dataGridViewItems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn art_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn art_nr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn art_bez2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn art_bez1;
     }
 }
 
