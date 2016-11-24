@@ -63,12 +63,16 @@ namespace Inject_some_SQL.Database
             dbConnection.Open();
         }
 
-        public void LoadItemsFromDB(string searchTerm, DataTable table) {
+        public void LoadItemsFromDB(string sAbez1, string sAbez2, DataTable table) {
             MySqlCommand cmd = new MySqlCommand();
 
+            
 
             cmd.Connection = dbConnection;
-            cmd.CommandText = "SELECT lfdnr, artnr, abez1, abez2 FROM artikel WHERE abez1 like '" + searchTerm + "';";
+            cmd.CommandText = " SELECT art.lfdnr, art.artnr, art.abez1, art.abez2, art.kosten, wtyp.bezeichnung, concat(ben.vorname, ' ', ben.name)" +
+                              " FROM artikel art, werkzeug_typen wtyp, benutzer ben " +
+                              " WHERE art.werk_typ = wtyp.lfdnr AND art.erstellungs_login = ben.id " +
+                              " AND UPPER(art.abez1)like UPPER('" + sAbez1 + "%') AND UPPER(art.abez2) like UPPER('" + sAbez2 + "%'); ";
 
             itemListAdapter = new MySqlDataAdapter(cmd);
             itemListAdapter.Fill(table);

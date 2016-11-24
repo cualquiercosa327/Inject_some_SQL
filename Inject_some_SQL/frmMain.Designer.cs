@@ -28,24 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.tbAbez1 = new System.Windows.Forms.TextBox();
             this.btSearch = new System.Windows.Forms.Button();
             this.dataGridViewItems = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbAbez2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).BeginInit();
             this.SuspendLayout();
             // 
-            // tbSearch
+            // tbAbez1
             // 
-            this.tbSearch.Location = new System.Drawing.Point(13, 13);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(645, 20);
-            this.tbSearch.TabIndex = 0;
+            this.tbAbez1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAbez1.Location = new System.Drawing.Point(88, 13);
+            this.tbAbez1.Name = "tbAbez1";
+            this.tbAbez1.Size = new System.Drawing.Size(611, 20);
+            this.tbAbez1.TabIndex = 0;
+            this.tbAbez1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
             // 
             // btSearch
             // 
-            this.btSearch.Location = new System.Drawing.Point(664, 11);
+            this.btSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btSearch.Location = new System.Drawing.Point(705, 11);
             this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(75, 23);
+            this.btSearch.Size = new System.Drawing.Size(75, 47);
             this.btSearch.TabIndex = 1;
             this.btSearch.Text = "Suche";
             this.btSearch.UseVisualStyleBackColor = true;
@@ -58,21 +65,53 @@
             this.dataGridViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewItems.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewItems.Location = new System.Drawing.Point(13, 40);
+            this.dataGridViewItems.Location = new System.Drawing.Point(13, 64);
             this.dataGridViewItems.Name = "dataGridViewItems";
             this.dataGridViewItems.ReadOnly = true;
-            this.dataGridViewItems.Size = new System.Drawing.Size(726, 402);
+            this.dataGridViewItems.Size = new System.Drawing.Size(767, 404);
             this.dataGridViewItems.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Artikel-Bez. 1:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Artikel-Bez. 2:";
+            // 
+            // tbAbez2
+            // 
+            this.tbAbez2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAbez2.Location = new System.Drawing.Point(88, 38);
+            this.tbAbez2.Name = "tbAbez2";
+            this.tbAbez2.Size = new System.Drawing.Size(611, 20);
+            this.tbAbez2.TabIndex = 5;
+            this.tbAbez2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbAbez2_KeyDown);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(751, 454);
+            this.ClientSize = new System.Drawing.Size(792, 480);
+            this.Controls.Add(this.tbAbez2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewItems);
             this.Controls.Add(this.btSearch);
-            this.Controls.Add(this.tbSearch);
+            this.Controls.Add(this.tbAbez1);
             this.Name = "frmMain";
             this.Text = "Artikelsuche";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).EndInit();
@@ -83,9 +122,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.TextBox tbAbez1;
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.DataGridView dataGridViewItems;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbAbez2;
     }
 }
 

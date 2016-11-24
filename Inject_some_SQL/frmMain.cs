@@ -120,16 +120,21 @@ namespace Inject_some_SQL
 
         private void LoadBySearchterm()
         {
-            string searchterm = null;
-            
+            string sAbez1 = null;
+            string sAbez2 = null;
+
             table = new DataTable();
 
-            searchterm = this.tbSearch.Text;
+            sAbez1 = this.tbAbez1.Text;
+            sAbez2 = this.tbAbez2.Text;
 
-            if (searchterm == "")
-                searchterm = "%";
+            if (sAbez1 == "")
+                sAbez1 = "%";
 
-            datamgr.LoadItemsFromDB(searchterm, table);
+            if (sAbez2 == "")
+                sAbez2 = "%";
+
+            datamgr.LoadItemsFromDB(sAbez1, sAbez2, table);
             
             dataGridViewItems.DataSource = table;
 
@@ -139,13 +144,30 @@ namespace Inject_some_SQL
             this.dataGridViewItems.Columns[1].HeaderText = "Artikel Nr.";
             this.dataGridViewItems.Columns[2].HeaderText = "Artikel Bez.1";
             this.dataGridViewItems.Columns[3].HeaderText = "Artikel Bez.2";
-
-
+            this.dataGridViewItems.Columns[4].HeaderText = "Kosten";
+            this.dataGridViewItems.Columns[5].HeaderText = "Werkzeugtyp";
+            this.dataGridViewItems.Columns[6].HeaderText = "Angelegt von";
         }
 
         private void btSearch_Click(object sender, EventArgs e)
         {
             LoadBySearchterm();
+        }
+
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F2)
+            {
+                LoadBySearchterm();
+            }
+        }
+
+        private void tbAbez2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F2)
+            {
+                LoadBySearchterm();
+            }
         }
     }
 }
