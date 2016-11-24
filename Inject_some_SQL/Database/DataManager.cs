@@ -1,5 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Inject_some_SQL.Database
 {
@@ -14,6 +15,7 @@ namespace Inject_some_SQL.Database
         private String dbPassword;
         private String dbDataBase;
         private bool connected = false;
+        private MySqlDataAdapter itemListAdapter;
 
         /// <summary>
         /// Gibt an, ob die Verbindung zur Datenbank besteht
@@ -60,5 +62,20 @@ namespace Inject_some_SQL.Database
             dbConnection = new MySqlConnection(dbConnectionString);
             dbConnection.Open();
         }
+
+        public void LoadItemsFromDB(string sAbez1, string sAbez2, DataTable table) {
+            MySqlCommand cmd = new MySqlCommand();
+
+            
+
+            cmd.Connection = dbConnection;
+            cmd.CommandText = " SELECT art.lfdnr, art.artnr, art.abez1, art.abez2, art.kosten, wtyp.bezeichnung, concat(ben.vorname, ' ', ben.name)" +
+                              " FROM artikel art, werkzeug_typen wtyp, benutzer ben " +
+                              " WHERE art.werk_typ = wtyp.lfdnr AND art.erstellungs_login = ben.id " +
+                              " AND UPPER(art.abez1)like UPPER('" + sAbez1 + "%') AND UPPER(art.abez2) like UPPER('" + sAbez2 + "%'); ";
+
+            itemListAdapter = new MySqlDataAdapter(cmd);
+            itemListAdapter.Fill(table);
+         }
     }
 }

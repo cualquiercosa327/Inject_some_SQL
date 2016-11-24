@@ -2,9 +2,12 @@
 using System.Windows.Forms;
 using Inject_some_SQL.Database;
 using System.IO;
+using System.Data;
 
 /* Test-Anwendung für SQL-Injection
  * Bewusst werden mehrere Sicherheitslücken eingebaut um SQL-Injection demonstrieren zu können
+ * 
+ * Work_from_work-Branche um von der Arbeit aus zu arbeiten
  * 
  * by Tim Lukas Förster 
  * 31.10.2016 - 
@@ -17,13 +20,16 @@ namespace Inject_some_SQL
     {
         private Configuration config = null;
         private DataManager datamgr = null;
+        private DataTable table = null;
 
         public frmMain()
         {
             InitializeComponent();
             InitConfiguration();
             InitDataManager();
+            InitLoad();
         }
+
 
         #region Datenbank - Konfiguration laden und Verbindung herstellen
         /// <summary>
@@ -105,5 +111,63 @@ namespace Inject_some_SQL
         }
 
         #endregion
+
+        private void InitLoad()
+        {
+            LoadBySearchterm();
+        }
+
+
+        private void LoadBySearchterm()
+        {
+            string sAbez1 = null;
+            string sAbez2 = null;
+
+            table = new DataTable();
+
+            sAbez1 = this.tbAbez1.Text;
+            sAbez2 = this.tbAbez2.Text;
+
+            if (sAbez1 == "")
+                sAbez1 = "%";
+
+            if (sAbez2 == "")
+                sAbez2 = "%";
+
+            datamgr.LoadItemsFromDB(sAbez1, sAbez2, table);
+            
+            dataGridViewItems.DataSource = table;
+
+            this.dataGridViewItems.DataSource = table;
+
+            this.dataGridViewItems.Columns[0].Visible = false;
+            this.dataGridViewItems.Columns[1].HeaderText = "Artikel Nr.";
+            this.dataGridViewItems.Columns[2].HeaderText = "Artikel Bez.1";
+            this.dataGridViewItems.Columns[3].HeaderText = "Artikel Bez.2";
+            this.dataGridViewItems.Columns[4].HeaderText = "Kosten";
+            this.dataGridViewItems.Columns[5].HeaderText = "Werkzeugtyp";
+            this.dataGridViewItems.Columns[6].HeaderText = "Angelegt von";
+        }
+
+        private void btSearch_Click(object sender, EventArgs e)
+        {
+            LoadBySearchterm();
+        }
+
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F2)
+            {
+                LoadBySearchterm();
+            }
+        }
+
+        private void tbAbez2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F2)
+            {
+                LoadBySearchterm();
+            }
+        }
     }
 }
