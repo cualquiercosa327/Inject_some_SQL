@@ -63,28 +63,15 @@ namespace Inject_some_SQL.Database
             dbConnection.Open();
         }
 
-        public void LoadItemsFromDB(string itemNumber, DataTable table) {
+        public void LoadItemsFromDB(string searchTerm, DataTable table) {
             MySqlCommand cmd = new MySqlCommand();
 
-            string selectCmd = " SELECT lfdnr, artnr, abez1, abez2 "
-                             + " FROM artikel "
-                             + " WHERE 1=1 ";
-
-            if (itemNumber != "")
-            {
-                selectCmd = selectCmd + " AND UPPER(artnr) like UPPER(?||'%') ";
-                cmd.Parameters.Add("ARTNR1", MySqlDbType.VarChar, 100).Value = itemNumber;
-            }
 
             cmd.Connection = dbConnection;
-            cmd.CommandText = selectCmd;
-            cmd.Prepare();
+            cmd.CommandText = "SELECT lfdnr, artnr, abez1, abez2 FROM artikel WHERE abez1 like '" + searchTerm + "';";
 
             itemListAdapter = new MySqlDataAdapter(cmd);
             itemListAdapter.Fill(table);
-
-            cmd.Dispose();
-
-        }
+         }
     }
 }

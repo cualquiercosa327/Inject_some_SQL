@@ -20,19 +20,14 @@ namespace Inject_some_SQL
     {
         private Configuration config = null;
         private DataManager datamgr = null;
+        private DataTable table = null;
 
         public frmMain()
         {
             InitializeComponent();
             InitConfiguration();
             InitDataManager();
-
-            test();
-        }
-
-        private void test()
-        {
-            LoadItemsToTable();
+            InitLoad();
         }
 
 
@@ -117,23 +112,40 @@ namespace Inject_some_SQL
 
         #endregion
 
-
-        private void LoadItemsToTable()
+        private void InitLoad()
         {
-
-            DataTable table = new DataTable();
-
-            datamgr.LoadItemsFromDB(null, table);
-
-            dataGridViewItems.DataSource = table;
-
+            LoadBySearchterm();
         }
 
 
+        private void LoadBySearchterm()
+        {
+            string searchterm = null;
+            
+            table = new DataTable();
+
+            searchterm = this.tbSearch.Text;
+
+            if (searchterm == "")
+                searchterm = "%";
+
+            datamgr.LoadItemsFromDB(searchterm, table);
+            
+            dataGridViewItems.DataSource = table;
+
+            this.dataGridViewItems.DataSource = table;
+
+            this.dataGridViewItems.Columns[0].Visible = false;
+            this.dataGridViewItems.Columns[1].HeaderText = "Artikel Nr.";
+            this.dataGridViewItems.Columns[2].HeaderText = "Artikel Bez.1";
+            this.dataGridViewItems.Columns[3].HeaderText = "Artikel Bez.2";
+
+
+        }
 
         private void btSearch_Click(object sender, EventArgs e)
         {
-
+            LoadBySearchterm();
         }
     }
 }
