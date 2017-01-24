@@ -69,10 +69,10 @@ namespace Inject_some_SQL.Database
             
 
             cmd.Connection = dbConnection;
-            cmd.CommandText = " SELECT art.lfdnr, art.artnr, art.abez1, art.abez2, art.kosten, wtyp.bezeichnung, concat(ben.vorname, ' ', ben.name)" +
+            cmd.CommandText = " SELECT art.artnr, art.abez1, art.abez2, art.kosten, wtyp.bezeichnung, concat(ben.vorname, ' ', ben.name)" +
                               " FROM artikel art, werkzeug_typen wtyp, benutzer ben " +
                               " WHERE art.werk_typ = wtyp.lfdnr AND art.erstellungs_login = ben.id " +
-                              " AND UPPER(art.abez1)like UPPER('" + sAbez1 + "%') AND UPPER(art.abez2) like UPPER('" + sAbez2 + "%'); ";
+                              " AND art.abez1 like '" + sAbez1 + "%' AND art.abez2 like '" + sAbez2 + "%'; ";
 
             itemListAdapter = new MySqlDataAdapter(cmd);
             itemListAdapter.Fill(table);
