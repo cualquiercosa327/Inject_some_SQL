@@ -140,13 +140,12 @@ namespace Inject_some_SQL
 
             this.dataGridViewItems.DataSource = table;
 
-            this.dataGridViewItems.Columns[0].Visible = false;
-            this.dataGridViewItems.Columns[1].HeaderText = "Artikel Nr.";
-            this.dataGridViewItems.Columns[2].HeaderText = "Artikel Bez.1";
-            this.dataGridViewItems.Columns[3].HeaderText = "Artikel Bez.2";
-            this.dataGridViewItems.Columns[4].HeaderText = "Kosten";
-            this.dataGridViewItems.Columns[5].HeaderText = "Werkzeugtyp";
-            this.dataGridViewItems.Columns[6].HeaderText = "Angelegt von";
+            this.dataGridViewItems.Columns[0].HeaderText = "Artikel Nr.";
+            this.dataGridViewItems.Columns[1].HeaderText = "Artikel Bez.1";
+            this.dataGridViewItems.Columns[2].HeaderText = "Artikel Bez.2";
+            this.dataGridViewItems.Columns[3].HeaderText = "Kosten";
+            this.dataGridViewItems.Columns[4].HeaderText = "Werkzeugtyp";
+            this.dataGridViewItems.Columns[5].HeaderText = "Angelegt von";
         }
 
         private void btSearch_Click(object sender, EventArgs e)
